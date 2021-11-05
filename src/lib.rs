@@ -329,7 +329,7 @@ pub unsafe extern "C" fn sr25519_vrf_sign_if_less(
     let raw_out_bytes = io.make_bytes::<[u8; SR25519_VRF_RAW_OUTPUT_SIZE as usize]>(BABE_VRF_PREFIX);
     let check = u128::from_le_bytes(raw_out_bytes) < limit_int;
 
-    ptr::copy(io.to_output().as_bytes().as_ptr(), out_and_proof_ptr, SR25519_VRF_OUTPUT_SIZE as usize);
+    // ptr::copy(io.to_output().as_bytes().as_ptr(), out_and_proof_ptr, SR25519_VRF_OUTPUT_SIZE as usize);
     ptr::copy(proof.to_bytes().as_ptr(), out_and_proof_ptr.add(SR25519_VRF_OUTPUT_SIZE as usize), SR25519_VRF_PROOF_SIZE as usize);
     if check {
         VrfResult::create_val(true)
@@ -338,6 +338,7 @@ pub unsafe extern "C" fn sr25519_vrf_sign_if_less(
     }
 }
 
+/*
 /// Verify a signature produced by a VRF with its original input and the corresponding proof and
 /// check if the result of the function is less than the threshold.
 /// @note If errors, is_less field of the returned structure is not meant to contain a valid value
@@ -395,6 +396,7 @@ pub unsafe extern "C" fn sr25519_vrf_verify(
         VrfResult::create_err(&SignatureError::EquationFalse)
     }
 }
+*/
 
 #[cfg(test)]
 pub mod tests {

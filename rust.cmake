@@ -49,7 +49,7 @@ ifd_install(${CMAKE_SOURCE_DIR}/sr25519Config-noconfig.cmake ${CMAKE_INSTALL_LIB
 add_custom_target(
     cargo_build
     ALL
-    COMMAND cargo build --target-dir ${CMAKE_BINARY_DIR} ${release_option}
+    COMMAND cargo build --target-dir ${CMAKE_BINARY_DIR} ${release_option} --target x86_64-apple-darwin
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
